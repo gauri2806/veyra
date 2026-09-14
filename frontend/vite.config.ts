@@ -7,4 +7,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    rolldownOptions: {
+      output: {
+        // Automatically splits vendor chunks (like node_modules)
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
+  }
 })
